@@ -1,9 +1,21 @@
 package pasantia.backend.entity;
 
+import jakarta.persistence.*;
+
+@MappedSuperclass
 public abstract class People {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name, mail, password;
+
+
+    //relacions
+    @ManyToOne
+    @JoinColumn(name = "province_id")
+    private Provinces province;
 
     public People() {
     }
