@@ -19,4 +19,38 @@ public class Companies extends People{
 
     @OneToMany(mappedBy = "company")
     private List<Internships> internships;
+
+    public Companies() {
+    }
+
+    public Companies(Integer id, String name, String mail, String password, String whoAreWe, Sectores sector, List<Internships> internships) {
+        super(id, name, mail, password);
+        this.whoAreWe = whoAreWe;
+        this.sector = sector;
+        this.internships = internships;
+    }
+
+    public String getWhoAreWe() {
+        return whoAreWe;
+    }
+
+    public void setWhoAreWe(String whoAreWe) {
+        this.whoAreWe = whoAreWe;
+    }
+
+    public Sectores getSector() {
+        return sector;
+    }
+
+    public void setSector(Sectores sector) {
+        this.sector = sector;
+    }
+
+    public List<Internships> getInternships() {
+        return internships;
+    }
+
+    public void setInternships(List<Internships> internships) {
+        this.internships = internships;
+    }
 }
