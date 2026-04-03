@@ -1,7 +1,10 @@
 package pasantia.backend.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pasantia.backend.entity.Companies;
+import pasantia.backend.security.Login;
 import pasantia.backend.serviceImplement.CompanyServiceImplement;
 
 import java.util.List;
@@ -37,6 +40,19 @@ public class CompanyController {
         update.setPassword(company.getPassword());
         update.setWhoAreWe(company.getWhoAreWe());
         return companyServiceImplement.update(update);
+    }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Login loginRequest) {
+        System.out.println("Mail recibido: " + loginRequest.getMail());
+        System.out.println("Password recibido: " + loginRequest.getPassword());
+
+        try {
+            Login response = companyServiceImplement.login(loginRequest.getMail(), loginRequest.getPassword());
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            System.out.println("Error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+        }
     }
 
 }

@@ -21,6 +21,11 @@ public class Companies extends People{
     private List<Internships> internships;
 
     public Companies() {
+        super();
+    }
+
+    public Companies(Integer id, String name, String mail, String password) {
+        super(id, name, mail, password);
     }
 
     public Companies(Integer id, String name, String mail, String password, String whoAreWe, Sectores sector, List<Internships> internships) {

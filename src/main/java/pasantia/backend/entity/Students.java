@@ -1,9 +1,7 @@
 package pasantia.backend.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 
 import java.sql.Date;
 import java.util.List;
@@ -17,6 +15,14 @@ public class Students extends People{
     //Relations
     @ManyToMany(mappedBy = "students")
     private List<Internships> internships;
+
+    public Students() {
+        super();
+    }
+
+    public Students(Integer id, String name, String mail, String password) {
+        super(id, name, mail, password);
+    }
 
     public Date getBirthday() { return birthday; }
 
