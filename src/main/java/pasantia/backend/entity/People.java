@@ -11,7 +11,6 @@ public abstract class People {
 
     private String name, mail, password;
 
-
     //relacions
     @ManyToOne
     @JoinColumn(name = "province_id")
