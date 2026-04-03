@@ -2,7 +2,6 @@ package pasantia.backend.controller;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
-import pasantia.backend.entity.Companies;
 import pasantia.backend.entity.Internships;
 import pasantia.backend.serviceImplement.InternshipServiceImplement;
 
