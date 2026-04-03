@@ -1,11 +1,13 @@
 package pasantia.backend.serviceImplement;
 
+import org.springframework.stereotype.Service;
 import pasantia.backend.entity.Internships;
 import pasantia.backend.repository.InternshipsRepository;
 import pasantia.backend.service.InternshipService;
 
 import java.util.List;
 
+@Service
 public class InternshipServiceImplement implements InternshipService {
 
     private InternshipsRepository internshipsRepository;
