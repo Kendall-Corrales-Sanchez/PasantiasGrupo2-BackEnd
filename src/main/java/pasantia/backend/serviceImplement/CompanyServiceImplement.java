@@ -1,10 +1,13 @@
 package pasantia.backend.serviceImplement;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pasantia.backend.DTOs.LoginAnswerDTO;
+import pasantia.backend.DTOs.LoginDTO;
 import pasantia.backend.entity.Companies;
 import pasantia.backend.repository.CompanyRepository;
 import pasantia.backend.security.JwtService;
-import pasantia.backend.security.Login;
 import pasantia.backend.service.CompanyService;
 
 import java.util.List;
@@ -14,13 +17,23 @@ public class CompanyServiceImplement implements CompanyService {
 
     private CompanyRepository companyRepository;
     private JwtService jwtService;
-    public CompanyServiceImplement(CompanyRepository companyRepository, JwtService jwtService) {
+    private BCryptPasswordEncoder encoder;
+
+    @Autowired
+    public CompanyServiceImplement(CompanyRepository companyRepository, JwtService jwtService, BCryptPasswordEncoder encoder) {
         this.companyRepository = companyRepository;
         this.jwtService = jwtService;
+        this.encoder = encoder;
     }
 
+    // Para el register
     @Override
     public Companies save(Companies company) {
+        // se crea una clave encriptada
+        String encodedPassword = encoder.encode(company.getPassword());
+        // Ahora le asignamos su contraseña encriptada random más su contraña y si alguien
+        // pone la misma contraseña será distinta
+        company.setPassword(encodedPassword);
         return companyRepository.save(company);
     }
 
@@ -45,17 +58,12 @@ public class CompanyServiceImplement implements CompanyService {
     }
 
     @Override
-    public Login login(String mail, String password) {
-        Companies company = companyRepository.login(mail, password)
-        .orElseThrow(() -> new RuntimeException("Credenciales incorrectas"));
+    public LoginAnswerDTO login(LoginDTO request) {
+        Companies company = companyRepository.login(request.getMail(), request.getPassword())
+                .orElseThrow(() -> new RuntimeException("Credenciales inválidas"));
+
         String token = jwtService.generateToken(company);
 
-        return new Login(
-                company.getId(),
-                company.getName(),
-                company.getPassword(),
-                company.getMail(),
-                token
-        );
+        return new LoginAnswerDTO(company, token);
     }
 }

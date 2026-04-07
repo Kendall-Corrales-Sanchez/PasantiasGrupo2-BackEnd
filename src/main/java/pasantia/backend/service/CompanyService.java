@@ -1,7 +1,8 @@
 package pasantia.backend.service;
 
+import pasantia.backend.DTOs.LoginAnswerDTO;
+import pasantia.backend.DTOs.LoginDTO;
 import pasantia.backend.entity.Companies;
-import pasantia.backend.security.Login;
 
 import java.util.List;
 
@@ -11,5 +12,5 @@ public interface CompanyService {
     Companies findById(Integer id);
     void deleteById(Integer id);
     Companies update(Companies company);
-    Login login(String mail, String password);
+    LoginAnswerDTO login(LoginDTO request);
 }

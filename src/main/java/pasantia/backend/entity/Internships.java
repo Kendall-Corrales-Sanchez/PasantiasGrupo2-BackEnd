@@ -17,7 +17,6 @@ public class Internships {
     private String nameInternship, description, funcionality, remuneration, requirement;
     private Date expirationDate;
 
-
     @Enumerated(EnumType.STRING)
     private DayWeek day;
 
