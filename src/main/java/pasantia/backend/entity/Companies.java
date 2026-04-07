@@ -23,11 +23,6 @@ public class Companies extends People{
     public Companies() {
         super();
     }
-
-    public Companies(Integer id, String name, String mail, String password) {
-        super(id, name, mail, password);
-    }
-
     public Companies(Integer id, String name, String mail, String password, String whoAreWe, Sectores sector, List<Internships> internships) {
         super(id, name, mail, password);
         this.whoAreWe = whoAreWe;

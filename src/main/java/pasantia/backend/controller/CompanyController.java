@@ -3,8 +3,9 @@ package pasantia.backend.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pasantia.backend.DTOs.LoginAnswerDTO;
+import pasantia.backend.DTOs.LoginDTO;
 import pasantia.backend.entity.Companies;
-import pasantia.backend.security.Login;
 import pasantia.backend.serviceImplement.CompanyServiceImplement;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class CompanyController {
 
     @PostMapping
     public Companies save(@RequestBody Companies company){
+
         return companyServiceImplement.save(company);
     }
 
@@ -42,12 +44,10 @@ public class CompanyController {
         return companyServiceImplement.update(update);
     }
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Login loginRequest) {
-        System.out.println("Mail recibido: " + loginRequest.getMail());
-        System.out.println("Password recibido: " + loginRequest.getPassword());
+    public ResponseEntity<?> login(@RequestBody LoginDTO loginRequest) {
 
         try {
-            Login response = companyServiceImplement.login(loginRequest.getMail(), loginRequest.getPassword());
+            LoginAnswerDTO response = companyServiceImplement.login(loginRequest);
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             System.out.println("Error: " + e.getMessage());

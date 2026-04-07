@@ -20,10 +20,6 @@ public class Students extends People{
         super();
     }
 
-    public Students(Integer id, String name, String mail, String password) {
-        super(id, name, mail, password);
-    }
-
     public Date getBirthday() { return birthday; }
 
     public void setBirthday(Date birthday) { this.birthday = birthday;}
