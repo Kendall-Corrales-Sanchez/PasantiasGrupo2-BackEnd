@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pasantia.backend.DTOs.LoginAnswerDTO;
 import pasantia.backend.DTOs.LoginDTO;
 import pasantia.backend.entity.Companies;
-import pasantia.backend.serviceImplement.CompanyServiceImplement;
+import pasantia.backend.service.CompanyServiceImplement;
 
 import java.util.List;
 
