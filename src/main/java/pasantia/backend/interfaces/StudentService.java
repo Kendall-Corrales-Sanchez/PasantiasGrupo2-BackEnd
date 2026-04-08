@@ -1,4 +1,4 @@
-package pasantia.backend.service;
+package pasantia.backend.interfaces;
 
 import pasantia.backend.entity.Students;
 

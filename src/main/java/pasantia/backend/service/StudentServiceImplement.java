@@ -1,9 +1,9 @@
-package pasantia.backend.serviceImplement;
+package pasantia.backend.service;
 
 import org.springframework.stereotype.Service;
 import pasantia.backend.entity.Students;
 import pasantia.backend.repository.StudentRepository;
-import pasantia.backend.service.StudentService;
+import pasantia.backend.interfaces.StudentService;
 
 import java.util.List;
 

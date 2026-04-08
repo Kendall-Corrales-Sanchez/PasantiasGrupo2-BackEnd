@@ -1,4 +1,4 @@
-package pasantia.backend.serviceImplement;
+package pasantia.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -8,7 +8,7 @@ import pasantia.backend.DTOs.LoginDTO;
 import pasantia.backend.entity.Companies;
 import pasantia.backend.repository.CompanyRepository;
 import pasantia.backend.security.JwtService;
-import pasantia.backend.service.CompanyService;
+import pasantia.backend.interfaces.CompanyService;
 
 import java.util.List;
 
@@ -59,11 +59,19 @@ public class CompanyServiceImplement implements CompanyService {
 
     @Override
     public LoginAnswerDTO login(LoginDTO request) {
-        Companies company = companyRepository.login(request.getMail(), request.getPassword())
+        // Paso 1: Buscar la empresa solo por email
+        Companies company = companyRepository.findByMail(request.getMail())
                 .orElseThrow(() -> new RuntimeException("Credenciales inválidas"));
 
-        String token = jwtService.generateToken(company);
+        // Paso 2: Comparar contraseña ingresada vs hash guardado
+        boolean passwordValid = encoder.matches(request.getPassword(), company.getPassword());
 
+        if (!passwordValid) {
+            throw new RuntimeException("Credenciales inválidas");
+        }
+
+        // Paso 3: Generar token
+        String token = jwtService.generateToken(company);
         return new LoginAnswerDTO(company, token);
     }
 }

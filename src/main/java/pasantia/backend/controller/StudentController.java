@@ -2,7 +2,7 @@ package pasantia.backend.controller;
 
 import org.springframework.web.bind.annotation.*;
 import pasantia.backend.entity.Students;
-import pasantia.backend.serviceImplement.StudentServiceImplement;
+import pasantia.backend.service.StudentServiceImplement;
 
 import java.util.List;
 
