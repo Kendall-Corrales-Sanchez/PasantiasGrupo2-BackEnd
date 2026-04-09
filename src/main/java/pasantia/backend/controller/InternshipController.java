@@ -2,13 +2,15 @@ package pasantia.backend.controller;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
+import pasantia.backend.DTOs.InternshipDTO;
 import pasantia.backend.entity.Internships;
 import pasantia.backend.service.InternshipServiceImplement;
 
 import java.util.List;
 
-@Repository
+@RestController
 @RequestMapping("/internship/probate")
+@CrossOrigin(origins = "http://localhost:4200")
 public class InternshipController {
 
     private final InternshipServiceImplement internshipServiceImplement;
@@ -22,7 +24,7 @@ public class InternshipController {
     }
 
     @GetMapping
-    public List<Internships> findAll(){
+    public List<InternshipDTO> findAll(){
         return internshipServiceImplement.findAll();
     }
 
