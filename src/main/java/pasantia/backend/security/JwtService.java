@@ -2,9 +2,10 @@ package pasantia.backend.security;
 
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Service;
-import pasantia.backend.entity.People;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.security.Keys;
+import pasantia.backend.entity.Users;
+
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
@@ -16,11 +17,11 @@ public class JwtService {
     private static final String SECRET_KEY = "miClaveSecretaSuperLargaParaJWT1234567890ABCDabcd";
 
     // Generar token
-    public String generateToken(People people) {
+    public String generateToken(Users users) {
         return Jwts.builder()
-                .subject(people.getMail())
-                .claim("id", people.getId())
-                .claim("name", people.getName())
+                .subject(users.getMail())
+                .claim("id", users.getId())
+                .claim("name", users.getName())
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 8)) // 8 horas
                 .signWith(getSigningKey())
                 .compact();

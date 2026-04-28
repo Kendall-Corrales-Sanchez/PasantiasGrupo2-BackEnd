@@ -1,6 +1,6 @@
 package pasantia.backend.controller;
 
-import org.springframework.stereotype.Repository;
+
 import org.springframework.web.bind.annotation.*;
 import pasantia.backend.DTOs.InternshipDTO;
 import pasantia.backend.entity.Internships;
