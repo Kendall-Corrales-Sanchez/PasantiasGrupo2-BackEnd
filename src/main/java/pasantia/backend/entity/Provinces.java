@@ -19,9 +19,6 @@ public class Provinces {
     private List<Internships> internships;
 
     @OneToMany(mappedBy = "province")
-    private List<Companies> companies;
-
-    @OneToMany(mappedBy = "province")
     private List<Students> students;
 
 

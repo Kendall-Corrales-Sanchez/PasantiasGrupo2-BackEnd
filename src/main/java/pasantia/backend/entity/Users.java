@@ -2,28 +2,34 @@ package pasantia.backend.entity;
 
 import jakarta.persistence.*;
 
-@MappedSuperclass
-public abstract class People {
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Users{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name, mail, password;
+    private String role;
 
-    //relacions
-    @ManyToOne
-    @JoinColumn(name = "province_id")
-    private Provinces province;
-
-    public People() {
+    public Users() {
     }
 
-    public People(Integer id, String name, String mail, String password) {
+    public Users(Integer id, String name, String mail, String password, String role) {
         this.id = id;
         this.name = name;
         this.mail = mail;
         this.password = password;
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Integer getId() {

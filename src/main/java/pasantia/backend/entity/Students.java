@@ -1,13 +1,12 @@
 package pasantia.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.util.List;
 
 @Entity
-public class Students extends People{
+public class Students extends Users{
 
     private String cv, interestCarrer;
     private Date birthday;
@@ -15,6 +14,10 @@ public class Students extends People{
     //Relations
     @ManyToMany(mappedBy = "students")
     private List<Internships> internships;
+
+    @ManyToOne
+    @JoinColumn(name = "province_id")
+    private Provinces province;
 
     public Students() {
         super();

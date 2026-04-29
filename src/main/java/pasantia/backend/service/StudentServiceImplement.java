@@ -15,6 +15,9 @@ public class StudentServiceImplement implements StudentService {
         this.studentRepository = studentRepository;
     }
 
+    public StudentServiceImplement() {
+    }
+
     @Override
     public Students save(Students student) {
         return studentRepository.save(student);

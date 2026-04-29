@@ -1,14 +1,12 @@
 package pasantia.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.List;
 
 @Entity
-public class Companies extends People{
+public class Companies extends Users {
 
     private String whoAreWe;
 
@@ -23,8 +21,7 @@ public class Companies extends People{
     public Companies() {
         super();
     }
-    public Companies(Integer id, String name, String mail, String password, String whoAreWe, Sectores sector, List<Internships> internships) {
-        super(id, name, mail, password);
+    public Companies(String whoAreWe, Sectores sector, List<Internships> internships) {
         this.whoAreWe = whoAreWe;
         this.sector = sector;
         this.internships = internships;

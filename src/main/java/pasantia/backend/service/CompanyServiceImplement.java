@@ -59,18 +59,17 @@ public class CompanyServiceImplement implements CompanyService {
 
     @Override
     public LoginAnswerDTO login(LoginDTO request) {
-        // Paso 1: Buscar la empresa solo por email
         Companies company = companyRepository.findByMail(request.getMail())
                 .orElseThrow(() -> new RuntimeException("Credenciales inválidas"));
 
-        // Paso 2: Comparar contraseña ingresada vs hash guardado
+
         boolean passwordValid = encoder.matches(request.getPassword(), company.getPassword());
 
         if (!passwordValid) {
             throw new RuntimeException("Credenciales inválidas");
         }
 
-        // Paso 3: Generar token
+        // Genera token
         String token = jwtService.generateToken(company);
         return new LoginAnswerDTO(company, token);
     }
