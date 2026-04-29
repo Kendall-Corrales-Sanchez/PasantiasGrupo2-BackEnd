@@ -1,19 +1,18 @@
 package pasantia.backend.DTOs;
 
 import pasantia.backend.entity.Companies;
+import pasantia.backend.entity.Users;
 
 public class LoginAnswerDTO {
     private Integer id;
     private String name;
     private String mail;
-    private String whoAreWe;
     private String token;
 
-    public LoginAnswerDTO(Companies company, String token) {
-        this.id = company.getId();
-        this.name = company.getName();
-        this.mail = company.getMail();
-        this.whoAreWe = company.getWhoAreWe();
+    public LoginAnswerDTO(Users users, String token) {
+        this.id = users.getId();
+        this.name = users.getName();
+        this.mail = users.getMail();
         this.token = token;
     }
 
@@ -39,14 +38,6 @@ public class LoginAnswerDTO {
 
     public void setMail(String mail) {
         this.mail = mail;
-    }
-
-    public String getWhoAreWe() {
-        return whoAreWe;
-    }
-
-    public void setWhoAreWe(String whoAreWe) {
-        this.whoAreWe = whoAreWe;
     }
 
     public String getToken() {

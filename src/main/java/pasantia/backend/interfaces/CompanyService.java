@@ -12,5 +12,4 @@ public interface CompanyService {
     Companies findById(Integer id);
     void deleteById(Integer id);
     Companies update(Companies company);
-    LoginAnswerDTO login(LoginDTO request);
 }
